@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.ContactsApplication" parent="Base.Theme.ContactsApplication" />
+
+    <style name="Title_Medium">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/Gold</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
