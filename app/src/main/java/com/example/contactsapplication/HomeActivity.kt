@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contactsapplication.Adapter.RecycleViewerAdapter
 import com.example.contactsapplication.Adapter.contactDM
@@ -32,27 +33,27 @@ class HomeActivity : AppCompatActivity() {
         val emptyText = findViewById<ImageView>(R.id.Empty_Text)
 
         // Initialize Views in Home Activity
-        deleteButton.isGone = true
-        addButton.isGone = false
-        emptyText.isGone = false
-        emptyImage.isGone = false
+        deleteButton.isVisible = false
+        addButton.isVisible = true
+        emptyText.isVisible = true
+        emptyImage.isVisible = true
+        recyclerView.isVisible = false
 
 
         // Handle Adding Contacts in Home Activity
         addButton.setOnClickListener {
             if (contacts.size < maxContacts) {
                 // Handle Dialog View in Home Activity
-                
-                recyclerView.isGone = false
-                emptyText.isGone = true
-                emptyImage.isGone = true
-                deleteButton.isGone = false
-                addButton.isGone = true
+
+                recyclerView.isVisible = true
+                emptyText.isVisible = false
+                emptyImage.isVisible = false
+                deleteButton.isVisible = true
+                addButton.isVisible = true
             }
 
             if (contacts.size == maxContacts) {
-                addButton.isGone = true
-                deleteButton.isGone = false
+                addButton.isVisible = false
             }
         }
     }
