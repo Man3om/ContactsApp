@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="30dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:layout_margin="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/constraintLayout"
+        android:background="@color/white">
+        <ImageView
+            android:id="@+id/User_Image"
+            android:layout_width="0dp"
+            android:adjustViewBounds="true"
+            android:layout_height="match_parent"
+            tools:src="@drawable/user_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/User_Image"
+            app:layout_constraintTop_toTopOf="@id/User_Image"
+            app:layout_constraintBottom_toBottomOf="@id/User_Image"
+            app:layout_constraintEnd_toEndOf="@id/User_Image"
+            android:padding="5dp"
+            android:textSize="16sp"
+            android:textColor="@color/Dark_Blue"
+            android:textStyle="bold"
+            tools:text="@string/leo_messi"
+            android:background="@drawable/use_name_bg"
+            app:layout_constraintVertical_bias="0.85"
+            app:layout_constraintHorizontal_bias="0.2"
+            />
+
+        <LinearLayout
+            android:id="@+id/Linear_Layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="3"
+            app:layout_constraintTop_toBottomOf="@id/User_Image"
+            app:layout_constraintStart_toStartOf="@id/User_Image"
+            app:layout_constraintEnd_toEndOf="@id/User_Image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/use_name_bg"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="leomessi@gmail.com"
+                android:textSize="12sp"
+                android:textColor="@color/Dark_Blue"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/exclude"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:id="@+id/phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                tools:text="+201558863655"
+                android:textSize="12sp"
+                android:textColor="@color/Dark_Blue"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/phone_call"
+                android:layout_weight="1"
+                />
+
+
+            <ImageView
+                android:id="@+id/delete_button_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/delete_button_card"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Contacts Application</string>
     <string name="add_button">+</string>
+    <string name="leo_messi">Leo Messi</string>
 </resources>
