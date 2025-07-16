@@ -8,10 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contactsapplication.R
 
-class RecycleViewerAdapter(private val contacts : ArrayList<contactDM>) : RecyclerView.Adapter<RecycleViewerAdapter.ViewHolder>() {
-
-    private val onClickListener: ContcatonClickListener? = null
-
+class RecycleViewerAdapter(private val contacts : ArrayList<contactDM> , private val onClickListener: ContcatonClickListener? = null) : RecyclerView.Adapter<RecycleViewerAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_card, parent, false)
         return ViewHolder(view)

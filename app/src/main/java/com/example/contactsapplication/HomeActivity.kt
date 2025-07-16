@@ -1,19 +1,19 @@
 package com.example.contactsapplication
 
-import android.app.Dialog
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.example.contactsapplication.Adapter.ContcatonClickListener
 import com.example.contactsapplication.Adapter.RecycleViewerAdapter
 import com.example.contactsapplication.Adapter.contactDM
 import com.google.android.material.button.MaterialButton
 
 class HomeActivity : AppCompatActivity() {
     private val TAG = "HomeActivity"
-    private val maxContacts = 6 ;
+    private val maxContacts = 6;
     private val contacts = ArrayList<contactDM>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,8 +22,13 @@ class HomeActivity : AppCompatActivity() {
 
         // Handle Recycler View in Home Activity (Start with Visibility = False) ----> RecycleViewer
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView.adapter = RecycleViewerAdapter(contacts)
-        recyclerView.isGone = true
+        recyclerView.adapter = RecycleViewerAdapter(contacts, object : ContcatonClickListener {
+            override fun onClick() {
+                Toast.makeText(this@HomeActivity ,"Name ${contacts[recyclerView.id].userName}", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        recyclerView.isVisible = false
 
 
         // Find Views in Home Activity
