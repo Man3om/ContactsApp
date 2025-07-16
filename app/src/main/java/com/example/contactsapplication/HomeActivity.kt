@@ -1,5 +1,6 @@
 package com.example.contactsapplication
 
+import android.app.Dialog
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -40,6 +41,8 @@ class HomeActivity : AppCompatActivity() {
         // Handle Adding Contacts in Home Activity
         addButton.setOnClickListener {
             if (contacts.size < maxContacts) {
+                // Handle Dialog View in Home Activity
+                
                 recyclerView.isGone = false
                 emptyText.isGone = true
                 emptyImage.isGone = true
