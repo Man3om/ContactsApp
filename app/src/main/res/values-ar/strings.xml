@@ -2,4 +2,11 @@
 <resources>
     <string name="add_button">+</string>
     <string name="leo_messi">Leo Messi</string>
+    <string name="user_name">User Name</string>
+    <string name="example_email_com">example@email.com</string>
+    <string name="_2000000000">+2000000000</string>
+    <string name="enter_user_name">Enter User Name</string>
+    <string name="enter_user_email">Enter User Email</string>
+    <string name="enter_user_phone">Enter User Phone</string>
+    <string name="enter_user">Enter User</string>
 </resources>

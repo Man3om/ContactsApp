@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Dark_Blue"
+    android:padding="8dp"
+    tools:context=".Fragments.BottomSheetFragment">
+
+    <ImageView
+        android:id="@+id/No_Image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/no_image"
+        android:padding="5dp"/>
+
+    <TextView
+        android:id="@+id/UserNameID"
+        style="@style/Title_Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Gold"
+        android:textColorHint="@color/Gold"
+        tools:text="@string/user_name"
+        app:layout_constraintBottom_toTopOf="@+id/User_Email_View"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/No_Image"
+        app:layout_constraintTop_toTopOf="@id/No_Image" />
+
+    <View
+        android:id="@+id/User_Email_View"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/Gold"
+        app:layout_constraintBottom_toTopOf="@+id/User_EmailID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/UserNameID"
+        app:layout_constraintTop_toBottomOf="@+id/UserNameID" />
+
+    <TextView
+        android:id="@+id/User_EmailID"
+        style="@style/Title_Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Gold"
+        tools:text="@string/example_email_com"
+        android:textColorHint="@color/Gold"
+        app:layout_constraintBottom_toTopOf="@+id/Email_Phone_View"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/UserNameID"
+        app:layout_constraintTop_toBottomOf="@+id/User_Email_View" />
+
+    <View
+        android:id="@+id/Email_Phone_View"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/Gold"
+        app:layout_constraintBottom_toTopOf="@+id/User_PhoneID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/User_EmailID"
+        app:layout_constraintTop_toBottomOf="@+id/User_EmailID" />
+
+    <TextView
+        android:id="@+id/User_PhoneID"
+        style="@style/Title_Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Gold"
+        tools:text="@string/_2000000000"
+        android:textColorHint="@color/Gold"
+        app:layout_constraintBottom_toBottomOf="@id/No_Image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/UserNameID"
+        app:layout_constraintTop_toBottomOf="@+id/Email_Phone_View" />
+
+    <EditText
+        android:id="@+id/User_Name_Edit_Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="10dp"
+        android:background="@drawable/edit_text_bg"
+        style="@style/Title_Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/No_Image"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:hint="@string/enter_user_name"
+        android:textColor="@color/Gold"
+        android:textColorHint="@color/Gold"/>
+    <EditText
+        android:id="@+id/User_Email_Edit_Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="10dp"
+        android:background="@drawable/edit_text_bg"
+        style="@style/Title_Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/User_Name_Edit_Text"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:hint="@string/enter_user_email"
+        android:textColor="@color/Gold"
+        android:textColorHint="@color/Gold"/>
+    <EditText
+        android:id="@+id/User_Phone_Edit_Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="10dp"
+        android:background="@drawable/edit_text_bg"
+        style="@style/Title_Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/User_Email_Edit_Text"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:hint="@string/enter_user_phone"
+        android:textColor="@color/Gold"
+        android:textColorHint="@color/Gold"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/Save_Button"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/User_Phone_Edit_Text"
+        android:backgroundTint="@color/white"
+        android:text="@string/enter_user"
+        android:textColor="@color/Dark_Blue"
+        style="@style/Title_Medium"
+        android:padding="10dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

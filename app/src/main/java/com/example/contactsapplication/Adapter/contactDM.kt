@@ -1,3 +1,5 @@
 package com.example.contactsapplication.Adapter
 
-data class contactDM(val userName :String , val email :String , val phone :String , val image :Int)
+import android.net.Uri
+
+data class contactDM(var userName:String, var email:String, var phone:String, var image: Uri?)

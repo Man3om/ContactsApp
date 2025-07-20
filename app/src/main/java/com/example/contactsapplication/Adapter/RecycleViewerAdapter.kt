@@ -1,17 +1,17 @@
 package com.example.contactsapplication.Adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.contactsapplication.R
+import com.example.contactsapplication.databinding.ActivityHomeBinding
+import com.example.contactsapplication.databinding.ContactCardBinding
 
-class RecycleViewerAdapter(private val contacts : ArrayList<contactDM> , private val onClickListener: ContcatonClickListener? = null) : RecyclerView.Adapter<RecycleViewerAdapter.ViewHolder>() {
+class RecycleViewerAdapter(var contacts : List<contactDM>) : RecyclerView.Adapter<RecycleViewerAdapter.ViewHolder>() {
+    private lateinit var RecyclerViewBinding : ContactCardBinding
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_card, parent, false)
-        return ViewHolder(view)
+        RecyclerViewBinding = ContactCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return ViewHolder(RecyclerViewBinding)
     }
 
     override fun getItemCount(): Int {
@@ -19,20 +19,14 @@ class RecycleViewerAdapter(private val contacts : ArrayList<contactDM> , private
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.image.setImageResource(contacts[position].image)
-        holder.name.text = contacts[position].userName
-        holder.email.text = contacts[position].email
-        holder.phone.text = contacts[position].phone
-
-        holder.itemView.setOnClickListener {
-            onClickListener?.onClick()
-        }
+        val contact = contacts[position]
+        holder.bind.userName.text = contact.userName
+        holder.bind.email.text = contact.email
+        holder.bind.phoneNumber.text = contact.phone
+        holder.bind.UserImage.setImageURI(contact.image)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image = itemView.findViewById<ImageView>(R.id.User_Image)
-        val name = itemView.findViewById<TextView>(R.id.user_name)
-        val email = itemView.findViewById<TextView>(R.id.email)
-        val phone = itemView.findViewById<TextView>(R.id.phone_number)
+    class ViewHolder(CarditemView: ContactCardBinding) : RecyclerView.ViewHolder(CarditemView.root) {
+        val bind = CarditemView
     }
 }
