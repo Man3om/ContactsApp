@@ -1,24 +1,22 @@
 package com.example.contactsapplication.Adapter
 
-import android.content.Intent
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.contactsapplication.databinding.ActivityHomeBinding
 import com.example.contactsapplication.databinding.ContactCardBinding
 
-class RecycleViewerAdapter(var contacts : List<contactDM>) : RecyclerView.Adapter<RecycleViewerAdapter.ViewHolder>() {
-    private lateinit var RecyclerViewBinding : ContactCardBinding
-    private lateinit var pickImage: ActivityResultLauncher<String>
-    var removecontact: ((Int) -> Unit)? = null ;
+
+class RecycleViewerAdapter(var contacts: List<contactDM>) : RecyclerView.Adapter<RecycleViewerAdapter.ViewHolder>() {
+    // Lambda to notify when an item should be removed, passing its position
+    var onRemoveContact: ((position: Int) -> Unit)? = null
+
+    // Lambda for when an item is clicked (example, if you need item clicks)
+    var onItemClick: ((contact: contactDM) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        RecyclerViewBinding = ContactCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return ViewHolder(RecyclerViewBinding)
+        // Inflate a new binding object for EACH ViewHolder instance
+        val binding = ContactCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -27,16 +25,25 @@ class RecycleViewerAdapter(var contacts : List<contactDM>) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contact = contacts[position]
-        holder.bind.userName.text = contact.userName
-        holder.bind.email.text = contact.email
-        holder.bind.phoneNumber.text = contact.phone
+        holder.bindData(contact) // Delegate binding to ViewHolder
 
-        holder.bind.deleteButtonCard.setOnClickListener {
-            removecontact
+        // Set click listener for the delete button
+        holder.binding.deleteButtonCard.setOnClickListener {
+            onRemoveContact?.invoke(position)
+        }
+
+        // Example: Set click listener for the whole item
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(contact)
         }
     }
 
-    class ViewHolder(CarditemView: ContactCardBinding) : RecyclerView.ViewHolder(CarditemView.root) {
-        val bind = CarditemView
+    // ViewHolder class now holds the binding and has a bindData method
+    class ViewHolder(val binding: ContactCardBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bindData(contact: contactDM) {
+            binding.userName.text = contact.userName
+            binding.email.text = contact.email
+            binding.phoneNumber.text = contact.phone
+        }
     }
 }

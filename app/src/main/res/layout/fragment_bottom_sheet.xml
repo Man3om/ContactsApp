@@ -13,8 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/User_EmailID"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/no_image"
+        app:layout_constraintBottom_toTopOf="@id/User_Name_Edit_Text"
+        android:src="@drawable/no_image"
         android:padding="5dp"/>
 
     <TextView
@@ -23,8 +25,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/Gold"
+        android:text="@string/user_name"
         android:textColorHint="@color/Gold"
-        tools:text="@string/user_name"
         app:layout_constraintBottom_toTopOf="@+id/User_Email_View"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -48,7 +50,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/Gold"
-        tools:text="@string/example_email_com"
+        android:text="@string/example_email_com"
         android:textColorHint="@color/Gold"
         app:layout_constraintBottom_toTopOf="@+id/Email_Phone_View"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +75,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/Gold"
-        tools:text="@string/_2000000000"
+        android:text="@string/_2000000000"
         android:textColorHint="@color/Gold"
         app:layout_constraintBottom_toBottomOf="@id/No_Image"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,6 +94,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/No_Image"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/User_Email_Edit_Text"
         android:hint="@string/enter_user_name"
         android:textColor="@color/Gold"
         android:textColorHint="@color/Gold"/>
@@ -105,6 +108,7 @@
         android:background="@drawable/edit_text_bg"
         style="@style/Title_Medium"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/User_Phone_Edit_Text"
         app:layout_constraintTop_toBottomOf="@id/User_Name_Edit_Text"
         app:layout_constraintEnd_toEndOf="parent"
         android:hint="@string/enter_user_email"
@@ -121,6 +125,7 @@
         style="@style/Title_Medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/User_Email_Edit_Text"
+        app:layout_constraintBottom_toTopOf="@id/Save_Button"
         app:layout_constraintEnd_toEndOf="parent"
         android:hint="@string/enter_user_phone"
         android:textColor="@color/Gold"
@@ -128,17 +133,16 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Save_Button"
-        android:layout_marginTop="10dp"
+        style="@style/Title_Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/User_Phone_Edit_Text"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/white"
+        android:padding="10dp"
         android:text="@string/enter_user"
         android:textColor="@color/Dark_Blue"
-        style="@style/Title_Medium"
-        android:padding="10dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/User_Phone_Edit_Text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
