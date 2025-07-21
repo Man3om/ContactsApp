@@ -1,6 +1,7 @@
 package com.example.contactsapplication
 
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.contactsapplication.Adapter.RecycleViewerAdapter
@@ -12,7 +13,7 @@ class HomeActivity : AppCompatActivity() {
     private val TAG = "HomeActivity"
     private lateinit var activityHomeBind: ActivityHomeBinding
     private lateinit var recycleViewerAdapter: RecycleViewerAdapter
-    private val contacts = mutableListOf<contactDM>()
+    private var contacts = mutableListOf<contactDM>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,17 +25,39 @@ class HomeActivity : AppCompatActivity() {
         activityHomeBind.recyclerView.adapter = recycleViewerAdapter
         activityHomeBind.recyclerView.isVisible = false
 
-
+        // Handle Add Button in Home Activity ----> BottomSheetFragment
         activityHomeBind.addButton.setOnClickListener {
             val bottomSheetFragment = BottomSheetFragment()
             bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
             bottomSheetFragment.saveContact = {
-                recycleViewerAdapter.contacts += it
-                recycleViewerAdapter.notifyItemInserted(contacts.size - 1)
+                addContact(it)
+                activityHomeBind.recyclerView.isVisible = true
+                activityHomeBind.EmptyImage.isVisible = false
+                activityHomeBind.EmptyText.isVisible = false
             }
-
         }
 
+        // Handle Remove Button in contactCard ----> RecycleViewer
+        recycleViewerAdapter.removecontact = {
+            removeContact(it)
+        }
+    }
+
+    fun addContact(contact: contactDM) {
+        contacts.add(contact)
+        recycleViewerAdapter.contacts = contacts
+        recycleViewerAdapter.notifyItemInserted(contacts.size - 1)
+    }
+
+    fun removeContact(position: Int) {
+        contacts.removeAt(position)
+        if (contacts.isEmpty()) {
+            activityHomeBind.recyclerView.isVisible = false
+            activityHomeBind.EmptyImage.isVisible = true
+            activityHomeBind.EmptyText.isVisible = true
+        }
+        recycleViewerAdapter.contacts = contacts
+        recycleViewerAdapter.notifyItemRemoved(position)
     }
 }
 

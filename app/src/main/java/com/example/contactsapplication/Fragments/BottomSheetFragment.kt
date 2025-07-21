@@ -33,26 +33,17 @@ class BottomSheetFragment : DialogFragment() {
         watcher(_binding!!.UserPhoneEditText, _binding!!.UserPhoneID)
 
         _binding!!.SaveButton.setOnClickListener {
-            saveContact?.invoke(
-                contactDM(
-                    _binding!!.UserNameID.text.toString(),
-                    _binding!!.UserEmailID.text.toString(),
-                    _binding!!.UserPhoneID.text.toString(),
-                    null
-                )
-            )
+            saveContact
             dismiss()
         }
-
     }
-
 
     private fun watcher(editText: EditText, textInputLayout: TextView){
 
         editText.addTextChangedListener(
             object : TextWatcher {
                 override fun afterTextChanged(p0: Editable?) {
-                    textInputLayout.text = editText.text.toString()
+                    textInputLayout.text = p0?.trim().toString()
                 }
 
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

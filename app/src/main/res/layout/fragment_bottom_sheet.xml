@@ -95,6 +95,7 @@
         android:hint="@string/enter_user_name"
         android:textColor="@color/Gold"
         android:textColorHint="@color/Gold"/>
+
     <EditText
         android:id="@+id/User_Email_Edit_Text"
         android:layout_width="match_parent"
@@ -109,6 +110,7 @@
         android:hint="@string/enter_user_email"
         android:textColor="@color/Gold"
         android:textColorHint="@color/Gold"/>
+
     <EditText
         android:id="@+id/User_Phone_Edit_Text"
         android:layout_width="match_parent"
