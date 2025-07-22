@@ -14,7 +14,6 @@ class HomeActivity : AppCompatActivity() {
     private val TAG = "HomeActivity"
     private lateinit var activityHomeBind: ActivityHomeBinding
     private lateinit var recycleViewerAdapter: RecycleViewerAdapter
-    private val BottomSheetFragment = BottomSheetFragment()
     private var contacts = mutableListOf<contactDM>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +29,9 @@ class HomeActivity : AppCompatActivity() {
 
         // Handle Add Button in Home Activity ----> BottomSheetFragment
         activityHomeBind.addButton.setOnClickListener {
-            BottomSheetFragment.show(supportFragmentManager, "bottomSheetFragment")
-            BottomSheetFragment.saveContact = { contact ->
+            val bottomSheetFragment = BottomSheetFragment()
+            bottomSheetFragment.show(supportFragmentManager, "bottomSheetFragment")
+            bottomSheetFragment.saveContact = { contact ->
                 Log.d(TAG, "saveContact: $contact")
                 recycleViewerAdapter.addContact(contact)
                 activityHomeBind.recyclerView.isVisible = true

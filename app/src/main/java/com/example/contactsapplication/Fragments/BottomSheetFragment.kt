@@ -1,5 +1,6 @@
 package com.example.contactsapplication.Fragments
 
+import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -10,12 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
-import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.net.toUri
 import androidx.fragment.app.DialogFragment
 import com.example.contactsapplication.Adapter.contactDM
+import com.example.contactsapplication.R
 import com.example.contactsapplication.databinding.FragmentBottomSheetBinding
 
 
@@ -48,6 +48,9 @@ class BottomSheetFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        resetViews()
+
         watcher(_binding!!.UserEmailEditText, _binding!!.UserEmailID)
         watcher(_binding!!.UserNameEditText, _binding!!.UserNameID)
         watcher(_binding!!.UserPhoneEditText, _binding!!.UserPhoneID)
@@ -110,5 +113,33 @@ class BottomSheetFragment : DialogFragment() {
 
             }
         )
+    }
+
+    private fun resetViews() {
+        // Clear EditText fields
+        _binding!!.UserNameEditText.text?.clear()
+        _binding!!.UserEmailEditText.text?.clear()
+        _binding!!.UserPhoneEditText.text?.clear()
+
+        // Remove error messages
+        _binding!!.UserNameEditText.error = null
+        _binding!!.UserEmailEditText.error = null
+        _binding!!.UserPhoneEditText.error = null
+
+        // Reset TextViews that preview EditText content (if they should be blank initially)
+        _binding!!.UserNameID.text = getString(R.string.user_name)
+        _binding!!.UserEmailID.text = getString(R.string.example_email_com)
+        _binding!!.UserPhoneID.text = getString(R.string._2000000000)
+
+        // Reset ImageView to the default image
+        _binding!!.NoImage.setImageResource(R.drawable.no_image) // Set your default placeholder
+        imageUri = null // Reset the stored image URI
+
+        Log.d("BottomSheetFragment", "Views have been reset")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
