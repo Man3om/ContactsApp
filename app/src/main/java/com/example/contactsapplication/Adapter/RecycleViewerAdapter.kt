@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.contactsapplication.databinding.ContactCardBinding
 
 
-class RecycleViewerAdapter(var contacts: List<contactDM>) : RecyclerView.Adapter<RecycleViewerAdapter.ViewHolder>() {
-    // Lambda to notify when an item should be removed, passing its position
-    var onRemoveContact: ((contact: contactDM) -> Unit)? = null
+class RecycleViewerAdapter(var contacts: MutableList<contactDM>) : RecyclerView.Adapter<RecycleViewerAdapter.ViewHolder>() {
+    // Lambda to notify when an item should be removed, passing its position and the contact
+    var onRemoveContact: ((position: Int, contact: contactDM) -> Unit)? = null
 
     // Lambda for when an item is clicked (example, if you need item clicks)
     var onItemClick: ((contact: contactDM) -> Unit)? = null
@@ -29,7 +29,7 @@ class RecycleViewerAdapter(var contacts: List<contactDM>) : RecyclerView.Adapter
 
         // Set click listener for the delete button
         holder.binding.deleteButtonCard.setOnClickListener {
-            onRemoveContact?.invoke(contact)
+            onRemoveContact?.invoke(position,contact)
         }
 
         // Set click listener for the whole item
@@ -44,6 +44,17 @@ class RecycleViewerAdapter(var contacts: List<contactDM>) : RecyclerView.Adapter
             binding.userName.text = contact.userName
             binding.email.text = contact.email
             binding.phoneNumber.text = contact.phone
+            binding.UserImage.setImageURI(contact.image)
         }
+    }
+
+    fun addContact(contact: contactDM) {
+        contacts.add(contact)
+        notifyItemInserted(contacts.size - 1)
+    }
+
+    fun removeContact(position: Int , contact: contactDM) {
+        contacts.remove(contact)
+        notifyItemRemoved(position)
     }
 }

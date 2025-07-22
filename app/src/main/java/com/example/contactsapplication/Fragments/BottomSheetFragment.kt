@@ -1,5 +1,6 @@
 package com.example.contactsapplication.Fragments
 
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -22,6 +23,20 @@ class BottomSheetFragment : DialogFragment() {
     private var _binding: FragmentBottomSheetBinding? = null
     var saveContact: ((contactDM) -> Unit)? = null
 
+    private var imageUri : Uri? = null
+
+    // Registers a photo picker activity launcher in single-select mode.
+    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        // Callback is invoked after the user selects a media item or closes the photo picker.
+        if (uri != null) {
+            _binding!!.NoImage.setImageURI(uri)
+            imageUri = uri
+            Log.d("PhotoPicker", "Selected URI: $uri")
+        } else {
+            Log.d("PhotoPicker", "No media selected")
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,7 +57,6 @@ class BottomSheetFragment : DialogFragment() {
             val name = _binding!!.UserNameEditText.text.toString().trim()
             val email = _binding!!.UserEmailEditText.text.toString().trim()
             val phone = _binding!!.UserPhoneEditText.text.toString().trim()
-            val uri = _binding!!.NoImage.toString()
 
             // 2. Optional: Add validation (e.g., check if name is empty)
             if (name.isBlank()) {
@@ -60,8 +74,10 @@ class BottomSheetFragment : DialogFragment() {
 
             // 3. Create the contactDM object
             val contactToSave = contactDM(
-                userName = name, email = email, phone = phone , image = uri.toUri()
+                userName = name, email = email, phone = phone , image = imageUri
             )
+
+            Log.d("BottomSheetFragment", "Contact to save: $contactToSave")
 
             // 4. Invoke the saveContact lambda with the new contact
             saveContact?.invoke(contactToSave)
@@ -71,17 +87,6 @@ class BottomSheetFragment : DialogFragment() {
 
         // Handle Image Click to select User Image
         _binding!!.NoImage.setOnClickListener {
-            // Registers a photo picker activity launcher in single-select mode.
-            val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-                // Callback is invoked after the user selects a media item or closes the photo picker.
-                if (uri != null) {
-                    _binding!!.NoImage.setImageURI(uri)
-                    Log.d("PhotoPicker", "Selected URI: $uri")
-                } else {
-                    Log.d("PhotoPicker", "No media selected")
-                }
-            }
-
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
     }

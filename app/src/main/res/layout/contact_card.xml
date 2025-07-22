@@ -21,7 +21,7 @@
             android:layout_width="0dp"
             android:adjustViewBounds="true"
             android:layout_height="match_parent"
-            android:src="@drawable/user_image"
+            tools:src="@drawable/user_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

@@ -3,29 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/Dark_Blue"
-    android:padding="8dp"
     tools:context=".Fragments.BottomSheetFragment">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/No_Image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/User_EmailID"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/User_Name_Edit_Text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="5dp"
         android:src="@drawable/no_image"
-        android:padding="5dp"/>
+        app:layout_constraintBottom_toTopOf="@id/User_Name_Edit_Text"
+        app:layout_constraintEnd_toStartOf="@id/User_EmailID"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintWidth_percent="0.5" />
 
     <TextView
         android:id="@+id/UserNameID"
         style="@style/Title_Medium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/Gold"
         android:text="@string/user_name"
+        android:textColor="@color/Gold"
         android:textColorHint="@color/Gold"
         app:layout_constraintBottom_toTopOf="@+id/User_Email_View"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,8 +51,8 @@
         style="@style/Title_Medium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/Gold"
         android:text="@string/example_email_com"
+        android:textColor="@color/Gold"
         android:textColorHint="@color/Gold"
         app:layout_constraintBottom_toTopOf="@+id/Email_Phone_View"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,8 +76,8 @@
         style="@style/Title_Medium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/Gold"
         android:text="@string/_2000000000"
+        android:textColor="@color/Gold"
         android:textColorHint="@color/Gold"
         app:layout_constraintBottom_toTopOf="@id/User_Name_Edit_Text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,51 +87,51 @@
 
     <EditText
         android:id="@+id/User_Name_Edit_Text"
+        style="@style/Title_Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:padding="10dp"
         android:background="@drawable/edit_text_bg"
-        style="@style/Title_Medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/No_Image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/User_Email_Edit_Text"
         android:hint="@string/enter_user_name"
+        android:padding="15dp"
         android:textColor="@color/Gold"
-        android:textColorHint="@color/Gold"/>
+        android:textColorHint="@color/Gold"
+        app:layout_constraintBottom_toTopOf="@id/User_Email_Edit_Text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/No_Image" />
 
     <EditText
         android:id="@+id/User_Email_Edit_Text"
+        style="@style/Title_Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:padding="10dp"
         android:background="@drawable/edit_text_bg"
-        style="@style/Title_Medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/User_Phone_Edit_Text"
-        app:layout_constraintTop_toBottomOf="@id/User_Name_Edit_Text"
-        app:layout_constraintEnd_toEndOf="parent"
         android:hint="@string/enter_user_email"
+        android:padding="15dp"
         android:textColor="@color/Gold"
-        android:textColorHint="@color/Gold"/>
+        android:textColorHint="@color/Gold"
+        app:layout_constraintBottom_toTopOf="@id/User_Phone_Edit_Text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/User_Name_Edit_Text" />
 
     <EditText
         android:id="@+id/User_Phone_Edit_Text"
+        style="@style/Title_Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:padding="10dp"
         android:background="@drawable/edit_text_bg"
-        style="@style/Title_Medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/User_Email_Edit_Text"
+        android:hint="@string/enter_user_phone"
+        android:padding="15dp"
+        android:textColor="@color/Gold"
+        android:textColorHint="@color/Gold"
         app:layout_constraintBottom_toTopOf="@id/Save_Button"
         app:layout_constraintEnd_toEndOf="parent"
-        android:hint="@string/enter_user_phone"
-        android:textColor="@color/Gold"
-        android:textColorHint="@color/Gold"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/User_Email_Edit_Text" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Save_Button"
@@ -141,7 +143,6 @@
         android:padding="10dp"
         android:text="@string/enter_user"
         android:textColor="@color/Dark_Blue"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/User_Phone_Edit_Text" />
