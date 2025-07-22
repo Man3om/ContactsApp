@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/Dark_Blue"
     tools:context=".Fragments.BottomSheetFragment">
 
@@ -15,7 +15,7 @@
         android:src="@drawable/no_image"
         app:layout_constraintBottom_toTopOf="@id/User_Name_Edit_Text"
         app:layout_constraintEnd_toStartOf="@id/User_EmailID"
-        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintHeight_percent="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread"

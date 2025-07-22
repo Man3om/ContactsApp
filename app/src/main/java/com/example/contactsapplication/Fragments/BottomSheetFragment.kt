@@ -1,11 +1,11 @@
 package com.example.contactsapplication.Fragments
 
-import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +13,14 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.DialogFragment
 import com.example.contactsapplication.Adapter.contactDM
 import com.example.contactsapplication.R
 import com.example.contactsapplication.databinding.FragmentBottomSheetBinding
 
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class BottomSheetFragment : DialogFragment() {
+
+class BottomSheetFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentBottomSheetBinding? = null
     var saveContact: ((contactDM) -> Unit)? = null
 
