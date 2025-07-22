@@ -8,7 +8,7 @@ import com.example.contactsapplication.databinding.ContactCardBinding
 
 class RecycleViewerAdapter(var contacts: List<contactDM>) : RecyclerView.Adapter<RecycleViewerAdapter.ViewHolder>() {
     // Lambda to notify when an item should be removed, passing its position
-    var onRemoveContact: ((position: Int) -> Unit)? = null
+    var onRemoveContact: ((contact: contactDM) -> Unit)? = null
 
     // Lambda for when an item is clicked (example, if you need item clicks)
     var onItemClick: ((contact: contactDM) -> Unit)? = null
@@ -25,20 +25,20 @@ class RecycleViewerAdapter(var contacts: List<contactDM>) : RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contact = contacts[position]
-        holder.bindData(contact) // Delegate binding to ViewHolder
+        holder.bindData(contact)
 
         // Set click listener for the delete button
         holder.binding.deleteButtonCard.setOnClickListener {
-            onRemoveContact?.invoke(position)
+            onRemoveContact?.invoke(contact)
         }
 
-        // Example: Set click listener for the whole item
+        // Set click listener for the whole item
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(contact)
         }
     }
 
-    // ViewHolder class now holds the binding and has a bindData method
+    // ViewHolder class holds the binding and has a bindData method
     class ViewHolder(val binding: ContactCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindData(contact: contactDM) {
             binding.userName.text = contact.userName

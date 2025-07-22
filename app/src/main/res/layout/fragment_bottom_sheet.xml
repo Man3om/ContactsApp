@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/Dark_Blue"
     android:padding="8dp"
     tools:context=".Fragments.BottomSheetFragment">
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/No_Image"
-        app:layout_constraintTop_toTopOf="@id/No_Image" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/User_Email_View"
@@ -77,7 +77,7 @@
         android:textColor="@color/Gold"
         android:text="@string/_2000000000"
         android:textColorHint="@color/Gold"
-        app:layout_constraintBottom_toBottomOf="@id/No_Image"
+        app:layout_constraintBottom_toTopOf="@id/User_Name_Edit_Text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@id/UserNameID"
@@ -141,6 +141,7 @@
         android:padding="10dp"
         android:text="@string/enter_user"
         android:textColor="@color/Dark_Blue"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/User_Phone_Edit_Text" />

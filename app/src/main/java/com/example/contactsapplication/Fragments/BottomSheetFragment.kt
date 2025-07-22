@@ -9,6 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.net.toUri
 import androidx.fragment.app.DialogFragment
 import com.example.contactsapplication.Adapter.contactDM
 import com.example.contactsapplication.databinding.FragmentBottomSheetBinding
@@ -38,27 +42,48 @@ class BottomSheetFragment : DialogFragment() {
             val name = _binding!!.UserNameEditText.text.toString().trim()
             val email = _binding!!.UserEmailEditText.text.toString().trim()
             val phone = _binding!!.UserPhoneEditText.text.toString().trim()
+            val uri = _binding!!.NoImage.toString()
 
             // 2. Optional: Add validation (e.g., check if name is empty)
             if (name.isBlank()) {
-                // Optionally show an error to the user, e.g., on _binding!!.UserNameEditText
                 _binding!!.UserNameEditText.error = "Name cannot be empty"
                 return@setOnClickListener // Don't proceed if validation fails
             }
-            // Add more validation for email and phone if needed
+            if (email.isBlank()) {
+                _binding!!.UserEmailEditText.error = "Email cannot be empty"
+                return@setOnClickListener // Don't proceed if validation fails
+            }
+            if (phone.isBlank()) {
+                _binding!!.UserPhoneEditText.error = "Phone cannot be empty"
+                return@setOnClickListener // Don't proceed if validation fails
+            }
 
             // 3. Create the contactDM object
             val contactToSave = contactDM(
-                userName = name, email = email, phone = phone,
-                image = null
-            ) // Adjust field names based on your contactDM class
+                userName = name, email = email, phone = phone , image = uri.toUri()
+            )
 
             // 4. Invoke the saveContact lambda with the new contact
-            saveContact?.invoke(contactToSave) //  Use safe call ?. and invoke()
+            saveContact?.invoke(contactToSave)
 
             dismiss() // Dismiss the bottom sheet
         }
 
+        // Handle Image Click to select User Image
+        _binding!!.NoImage.setOnClickListener {
+            // Registers a photo picker activity launcher in single-select mode.
+            val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+                // Callback is invoked after the user selects a media item or closes the photo picker.
+                if (uri != null) {
+                    _binding!!.NoImage.setImageURI(uri)
+                    Log.d("PhotoPicker", "Selected URI: $uri")
+                } else {
+                    Log.d("PhotoPicker", "No media selected")
+                }
+            }
+
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
     }
 
     private fun watcher(editText: EditText, textInputLayout: TextView){

@@ -2,10 +2,9 @@ package com.example.contactsapplication
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.result.ActivityResultLauncher
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import com.example.contactsapplication.Adapter.RecycleViewerAdapter
 import com.example.contactsapplication.Adapter.contactDM
 import com.example.contactsapplication.Fragments.BottomSheetFragment
@@ -43,18 +42,25 @@ class HomeActivity : AppCompatActivity() {
 
         // Handle Remove Button in contactCard ----> RecycleViewer
         recycleViewerAdapter.onRemoveContact = {
-            removeContact(it)
+            removeContact(contacts.indexOf(it))
+        }
+
+        // Handle Item Click in contactCard ----> BottomSheetFragment
+        recycleViewerAdapter.onItemClick = {
+            val contcatData = it
+            Toast.makeText(this, "Item Clicked: ${contcatData.userName} , ${contcatData.email}", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
-    fun addContact(contact: contactDM) {
+    private fun addContact(contact: contactDM) {
         contacts.add(contact)
         recycleViewerAdapter.contacts = contacts
         recycleViewerAdapter.notifyItemInserted(contacts.size - 1)
         Log.d(TAG, "addContact: $contacts")
     }
 
-    fun removeContact(position: Int) {
+    private fun removeContact(position: Int) {
         contacts.removeAt(position)
         if (contacts.isEmpty()) {
             activityHomeBind.recyclerView.isVisible = false
